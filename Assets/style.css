@@ -1,0 +1,179 @@
+/* === QUESTARENA REFORGED UI === */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
+
+/* === VARIABLES === */
+:root {
+  --bg1: #0b0f19;
+  --bg2: #141a2b;
+  --primary: #3b82f6;
+  --secondary: #10b981;
+  --gold: #facc15;
+  --text: #f8fafc;
+  --card: rgba(255,255,255,0.08);
+}
+
+/* === GLOBAL === */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top, #0b0f19, #05060d);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* === ANIMATED BACKGROUND === */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at 20% 20%, rgba(59,130,246,0.25), transparent 70%),
+              radial-gradient(circle at 80% 80%, rgba(16,185,129,0.25), transparent 70%);
+  animation: moveGlow 10s infinite alternate ease-in-out;
+  z-index: -1;
+}
+@keyframes moveGlow {
+  from { background-position: 0% 0%, 100% 100%; }
+  to { background-position: 100% 0%, 0% 100%; }
+}
+
+/* === NAVIGATION === */
+header {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 14px 20px;
+  background: rgba(11,15,25,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  animation: fadeInDown 1s ease;
+}
+header a {
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  font-size: 15px;
+}
+header a:hover {
+  color: var(--secondary);
+  text-shadow: 0 0 10px var(--primary);
+  transform: scale(1.1);
+}
+
+/* === CONTAINER === */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 50px auto;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1.2s ease;
+}
+
+/* === TITLES === */
+h1, h2, h3 {
+  text-align: center;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+/* === CARD === */
+.card {
+  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 25px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 1s ease;
+}
+.card:hover {
+  transform: rotateX(5deg) rotateY(-3deg) scale(1.02);
+  box-shadow: 0 0 25px rgba(59,130,246,0.3);
+}
+
+/* === STATS === */
+.stat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 15px;
+}
+.stat {
+  flex: 1;
+  min-width: 160px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  transition: background 0.3s ease;
+}
+.stat:hover { background: rgba(255,255,255,0.2); }
+
+/* === XP BAR === */
+.xp-bar {
+  width: 80%;
+  margin: 10px auto;
+  height: 16px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.6);
+}
+.xp-fill {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  height: 100%;
+  animation: fillXp 1.5s ease forwards;
+  box-shadow: 0 0 10px var(--primary);
+}
+@keyframes fillXp {
+  from { width: 0%; }
+  to { width: var(--progress, 80%); }
+}
+
+/* === BUTTON === */
+button, .btn {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(59,130,246,0.3);
+}
+button:hover, .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--secondary);
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn { from {opacity:0;transform:translateY(10px);} to {opacity:1;transform:translateY(0);} }
+@keyframes fadeInDown { from {opacity:0;transform:translateY(-15px);} to {opacity:1;transform:translateY(0);} }
+@keyframes slideUp { from {opacity:0;transform:translateY(40px);} to {opacity:1;transform:translateY(0);} }
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  header { flex-wrap: wrap; gap: 10px; font-size: 14px; }
+  .container { width: 95%; padding: 15px; }
+  .stat-grid { flex-direction: column; align-items: center; }
+}
