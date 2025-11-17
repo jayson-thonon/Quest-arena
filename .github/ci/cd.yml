@@ -1,1 +1,34 @@
-sqd
+sqdwqname: Deploy quest-arena
+
+on:
+  push:
+    branches:
+      - master   # branche qui déclenche le CI/CD
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload files to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASS }}
+          source: "./"
+          target: "/var/www/escapegame"
+
+      - name: Restart game server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASS }}
+          script: |
+            cd /var/www/escapegame
+            npm install
+            pm2 restart all
