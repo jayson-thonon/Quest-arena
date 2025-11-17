@@ -123,7 +123,7 @@ header a:hover{color:#00e0ff;text-shadow:0 0 10px #00e0ff;}
     <p class="xp-text"><?= $xpActuelle ?> / <?= $xpMax ?> XP</p>
 
     <div class="stat-grid">
-      <div class="stat">💖 <strong>PV :</strong><br><?= (int)$personnage['points_vie']; ?></div>
+      <div class="stat">💖 <strong>PV 80 :</strong><br><?= (int)$personnage['points_vie']; ?></div>
       <div class="stat">⚔️ <strong>Attaque :</strong><br><?= (int)$personnage['attaque']; ?></div>
       <div class="stat">🛡️ <strong>Défense :</strong><br><?= (int)$personnage['defense']; ?></div>
       <div class="stat">🏅 <strong>Victoires :</strong><br><?= (int)$personnage['victoires']; ?></div>
