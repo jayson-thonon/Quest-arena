@@ -1,9 +1,9 @@
-sqdwqname: Deploy quest-arena
+name: Deploy quest-arena
 
 on:
   push:
     branches:
-      - master   # branche qui déclenche le CI/CD
+      - main
 
 jobs:
   deploy:
